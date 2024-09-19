@@ -1,0 +1,44 @@
+version: 2
+project_name: qrinfo
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - freebsd
+      - windows
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    goamd64:
+      - v1
+      - v2
+      - v3
+universal_binaries:
+  - id: default
+    name_template: '{{.ProjectName}}'
+brews:
+  - goarm: 7
+    goamd64: v2
+    repository:
+      owner: rs
+      name: homebrew-tap
+      branch: master
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+    commit_author:
+      name: Olivier Poitrey
+      email: rs@rhapsodyk.net
+    homepage: https://github.com/rs/qrinfo
+    description: QRCode info reader
+
+release:
+  name_template: "{{.ProjectName}}-v{{.Version}}"
+  draft: false
+  prerelease: false
