@@ -5,7 +5,9 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  - goos:
+  - env:
+      - CGO_ENABLED=1
+    goos:
       - darwin
       - linux
       - freebsd
