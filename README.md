@@ -2,6 +2,16 @@
 
 The `qrinfo` command outputs the contents of a QR code along with its encoding parameters.
 
+```
+$ qrinfo /path/to/image.png
+Data: some QRCode example
+Version: 3
+ECC: H
+Mask: 3
+Data Type: Byte
+ECI: ISO-8859-1 (default)
+```
+
 ## Install
 
 Direct downloads are available through the [releases page](https://github.com/rs/qrinfo/releases/latest).
