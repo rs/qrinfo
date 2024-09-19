@@ -5,21 +5,25 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  - env:
+  - id: darwin_build
+    env:
       - CGO_ENABLED=1
     goos:
       - darwin
-      - linux
-      - freebsd
-      - windows
     goarch:
       - amd64
-      - arm
       - arm64
-    goamd64:
-      - v1
-      - v2
-      - v3
+  - id: other_builds
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - freebsd
+    goarch:
+      - amd64
+      - arm64
+      - arm
 universal_binaries:
   - id: default
     name_template: '{{.ProjectName}}'
