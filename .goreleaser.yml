@@ -5,17 +5,25 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  - env:
+  - id: cgo
+    env:
       - CGO_ENABLED=1
     goos:
       - darwin
-      - linux
-      - freebsd
-      - windows
     goarch:
       - amd64
-      - arm
       - arm64
+  - id: nocgo
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - freebsd
+    goarch:
+      - amd64
+      - arm64
+      - arm
 brews:
   - goarm: 7
     goamd64: v2
