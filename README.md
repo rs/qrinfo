@@ -25,7 +25,7 @@ brew install rs/tap/qrinfo
 From source:
 
 ```
-go install github.com/rs/jaggr@latest
+go install github.com/rs/qrinfo@latest
 ```
 
 ## Usage
